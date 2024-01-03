@@ -1,0 +1,273 @@
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Wed Oct 18 13:02:51 2023
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+
+SQL> SQL> SQL> DECLARE
+  2  	 id_menu number(10);
+  3  	 MAX_ID_PERFIL_GD NUMBER (38);
+  4  	 id_menu_proyecto NUMBER(38);
+  5  	 PROYECTO_GD_ID NUMBER(38);
+  6  	 max_rel_perfil_menu NUMBER(38);
+  7  
+  8  BEGIN
+  9  	 select max(id)+1
+ 10  	 INTO id_menu
+ 11  	 from gestion_direccion.menu_gd;
+ 12  
+ 13  	 INSERT INTO GESTION_DIRECCION.MENU_GD (ID, NAME, PARENT, TEXTO, LINK, TARGET, ORDEN, PROYECTO_GD_ID, NUM_MENU)
+ 14  	 VALUES (
+ 15  	 id_menu,
+ 16  	 'totem_SSCHILOE',
+ 17  	 'administracion',
+ 18  	 'TOTEM SSCHILOE',
+ 19  	 'gestion/totem/public/auth/sschiloe',
+ 20  	 'Contenido',
+ 21  	 '10',
+ 22  	 '1',
+ 23  	 '1');
+ 24  	 commit;
+ 25  EXCEPTION
+ 26  	 WHEN OTHERS THEN
+ 27  	 ROLLBACK;
+ 28  END;
+ 29  /
+
+PL/SQL procedure successfully completed.
+
+SQL> SHOW ERRORS
+No errors.
+SQL> SQL> DECLARE
+  2  
+  3  	 CURSOR c_idperfiles IS
+  4  	     SELECT
+  5  		 DISTINCT(perfil_id)
+  6  	     FROM BIBLIOTECA_VIRTUAL.usuario_panel
+  7  	     INNER JOIN BIBLIOTECA_VIRTUAL.pertenencia_usuario
+  8  	     ON usuario_panel.id = pertenencia_usuario.id_usuario
+  9  	     INNER JOIN GESTION_DIRECCION.perfil_gd perf
+ 10  	     ON usuario_panel.perfil_id = perf.id
+ 11  	     WHERE tipo_dependencia IN ('SUB', 'DEP', 'DIR')
+ 12  	     AND perf.id = 50;
+ 13  
+ 14  	 TYPE t_idperfiles_type
+ 15  	    IS TABLE OF BIBLIOTECA_VIRTUAL.usuario_panel.perfil_id%TYPE;
+ 16  
+ 17  	  t_idperfiles_ids t_idperfiles_type := t_idperfiles_type();
+ 18  
+ 19  	 MAX_ID_MENU  NUMBER(20);
+ 20  	 MAX_ID_PERFIL GESTION_DIRECCION.MENU_GD.ID%TYPE;
+ 21  
+ 22  BEGIN
+ 23  
+ 24  	 FOR r_idperfil IN c_idperfiles
+ 25  	 LOOP
+ 26  	     t_idperfiles_ids.EXTEND;
+ 27  	     t_idperfiles_ids(t_idperfiles_ids.LAST) := r_idperfil.perfil_id;
+ 28  	 END LOOP;
+ 29  
+ 30  
+ 31  	 --SELECT MAX(ID)
+ 32  	 --INTO MAX_ID_MENU
+ 33  	 --FROM ALIMENTACION.perfiles_test;
+ 34  
+ 35  	 SELECT MAX(ID)
+ 36  	 INTO MAX_ID_MENU
+ 37  	 FROM GESTION_DIRECCION.perfil_menu_gd;
+ 38  
+ 39  	 SELECT MAX(ID)
+ 40  	 INTO MAX_ID_PERFIL
+ 41  	 FROM GESTION_DIRECCION.MENU_GD;
+ 42  
+ 43  
+ 44  	 FOR l_index IN t_idperfiles_ids.FIRST..t_idperfiles_ids.LAST
+ 45  	 LOOP
+ 46  	 max_id_menu := max_id_menu + 1;
+ 47  
+ 48  	     insert INTO GESTION_DIRECCION.perfil_menu_gd (ID, perfil_gd_id, menu_gd_id, proyecto_gd_id)
+ 49  	     VALUES
+ 50  	     (
+ 51  		 max_id_menu,
+ 52  		 t_idperfiles_ids(l_index),
+ 53  		 MAX_ID_PERFIL,
+ 54  		 1
+ 55  	     );
+ 56  	 END LOOP;
+ 57  	 commit;
+ 58  END;
+ 59  /
+
+PL/SQL procedure successfully completed.
+
+SQL> SHOW ERRORS
+No errors.
+SQL> SQL> 
+SQL>   CREATE TABLE "TOTEM"."RESTRICCIONES"
+  2  	(    "ID" NUMBER NOT NULL ENABLE,
+  3  	     "CLAVE" VARCHAR2(100 CHAR) NOT NULL ENABLE,
+  4  	     "VALOR" VARCHAR2(100 CHAR) NOT NULL ENABLE,
+  5  	     "ENTIDAD" VARCHAR2(100 CHAR) NOT NULL ENABLE,
+  6  	     "FEC_DESDE" DATE NOT NULL ENABLE,
+  7  	     "FEC_HASTA" VARCHAR2(20)
+  8  	) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  9    STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+ 10    PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+ 11    TABLESPACE "TOTEM"
+ 12    /
+
+Table created.
+
+SQL> 
+SQL> 	COMMENT ON COLUMN "TOTEM"."RESTRICCIONES"."ID" IS 'IDENTIFICADOR DE RESTRICCION'
+  2  	/
+
+Comment created.
+
+SQL> 	COMMENT ON COLUMN "TOTEM"."RESTRICCIONES"."CLAVE" IS 'CLAVE ASOCIDA A UNA RESTRICCION'
+  2  	/
+
+Comment created.
+
+SQL> 	COMMENT ON COLUMN "TOTEM"."RESTRICCIONES"."VALOR" IS 'VALOR DE LA RESTRICCIÓN'
+  2  	/
+
+Comment created.
+
+SQL> 	COMMENT ON COLUMN "TOTEM"."RESTRICCIONES"."ENTIDAD" IS 'ENTIDAD DE RESTRICCIÓN'
+  2  	/
+
+Comment created.
+
+SQL> 	COMMENT ON COLUMN "TOTEM"."RESTRICCIONES"."FEC_DESDE" IS 'FECHA INICIO RESTRICCIÓN'
+  2  	/
+
+Comment created.
+
+SQL> 	COMMENT ON COLUMN "TOTEM"."RESTRICCIONES"."FEC_HASTA" IS 'FECHA FIN RESTRICCION, UN VALOR NULL INIDCA RESTRICCIÓN VIGENTE'
+  2  	/
+
+Comment created.
+
+SQL> 	COMMENT ON TABLE "TOTEM"."RESTRICCIONES"  IS 'Entidad que permite especificar restriciones asociadas a las personas. Ejemplo rut a los cuales negar un acceso ligado a personas definidas en la entidad personas'
+  2  /
+
+Comment created.
+
+SQL> SQL> REM INSERTING into DESTINO
+SQL> SET DEFINE OFF;
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('45','UNIDAD DE BODEGA','-1',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('49','CAJA','1',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('50','OFICINAS DE SERVICIOS GENERALES','1',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('47','OIRS','1',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('48','RECEPCIÓN','1',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('41','AUDITORIO','1',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('39','FINANZAS','1',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('38','OFICINA DE PARTES(RECEPCIÓN Y DESPACHO)','1',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('37','INFORMÁTICA','1',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('42','SALA DE REUNIONES 2','2',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('51','GESTIÓN CLÍNICA','2',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('40','APS','2',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('43','PERSONAL','2',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('57','CASINO','3',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('53','CALIDAD DE VIDA','3',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('54','SALA DE SERVIDORES','3',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('55','INTELIGENCIA SANITARIA','3',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('56','PARTICIPACIÓN SOCIAL','3',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('46','ADQUISICIONES','3',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('60','COMUNICACIONES','4',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('59','JURíDICA','4',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('44','DIRECCIÓN','4',to_date('12/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('61','AUDITORÍA','4',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('62','SUBDIRECCCIÓN DE RECURSOS FÍSICOS Y FINANCIEROS','4',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('64','OFICINA DE PARTES','4',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> Insert into TOTEM.DESTINO (ID,SALA,PISO,FECH_INI,FECH_TER,ID_ESTABLECIMIENTO,OBSERVACION) values ('63','SUBDIRECCIÓN DE RECURSOS HUMANOS','4',to_date('18/10/23','DD/MM/RR'),null,'197','SSCHILOE');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options

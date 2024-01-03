@@ -1,0 +1,836 @@
+
+input{
+    display:block;
+    width:100%;
+}
+
+.contenedor-recepcion{
+            display: grid; 
+            grid-template-areas: 'espacio-izq espacio-sup     espacio-sup espacio-der '
+                                 'espacio-izq establecimiento ayuda       espacio-der '
+                                 'espacio-izq establecimiento ayuda       espacio-der '
+                                 'espacio-izq contTablaTotem  otro        espacio-der '
+                                 'espacio-izq mensajes        mensajes    espacio-der '
+                                 'espacio-izq espacio-inf     espacio-inf espacio-der ';
+
+            grid-template-columns: 5% 45% 45% 5%;
+            grid-template-rows:10px 100px 100px 600px 50px 10px; 
+            justify-items: stretch;
+            align-items: center;
+            grid-gap: 10px;
+            font-family: arial;
+            font-size: 15px;
+            color:#5D470E;
+            width: 100%;
+            height:100%;
+            background: #F3E9CC;
+            padding: 5px;
+}
+
+ .establecimiento{
+            grid-area:establecimiento; 
+            text-align:center;
+            font-weight:bold; 
+            font-size: xx-large;
+ }
+  
+ .contTablaTotem{
+            width:100%;
+            grid-area: contTablaTotem;
+            align-self: start;
+            place-self: center;
+            background-color: transparent;
+            /*border: solid #5D470E;*/
+            padding: 10px;
+/*            border-width: 1px;
+            border-radius: 5px;     */
+ }
+ .tablaTotem{
+            font-size: 11px;
+ }
+ .tablaTotem thead, tbody, tfoot, tr, td, th {
+     background-color: whitesmoke;
+ }
+  
+ .ayuda{
+            grid-area:ayuda; 
+            text-align:center;
+            font-weight:bold;
+ } 
+ .otro{
+            grid-area:otro; 
+            text-align:center;
+            font-weight:bold;
+            align-self: start;
+            place-self: center;
+ }
+
+ .otro1{
+            grid-area:otro; 
+            text-align:center;
+            font-weight:bold;
+            align-self: start;
+            place-self: center safe;
+ }
+ 
+ .mensajes{
+            grid-area:mensajes; 
+            text-align:center;
+            font-weight:bold;
+            align-self: start;
+            place-self: center safe;     
+ }
+.contenedor-destinos{
+           display: grid; 
+           grid-template-areas: 'espacio-izq1 espacio-sup1          espacio-sup1      espacio-sup1     espacio-sup1      espacio-sup1  espacio-sup1   espacio-der1 '
+                                'espacio-izq1 nacionalidad          codigo_pais       vacio1           vacio1            vacio1        vacio1         espacio-der1 '
+                                'espacio-izq1 lbl_NEstablecimiento  NEstablecimiento  NEstablecimiento NEstablecimiento  vacio         vacio          espacio-der1 '
+                                'espacio-izq1 lbl_rut               rut               lbl_persona      nombre            apellido_p    apellido_m     espacio-der1 '
+                                'espacio-izq1 Destinos              Destinos          Destinos         Destinos          Destinos      Destinos       espacio-der1 '
+                                'espacio-izq1 espacio-inf1          espacio-inf1      espacio-inf1     espacio-inf1      espacio-inf1  espacio-inf1   espacio-der1 ';	
+                                
+           grid-template-columns: 5% 10% 10% 10% 20% 20% 20% 5%;
+           grid-template-rows:40px 40px 40px 40px 500px 40px;
+           /*min-height: 100px;*/
+           /*line-height: 32px;*/
+           
+           justify-items: stretch;
+           align-items: center;
+           grid-gap: 5px;
+           font-family: arial;
+           font-size: 15px;
+           color:#5D470E;
+           width: 100%;
+           height:100%;
+           background: #F3E9CC;
+           padding: 5px;
+}
+
+                .lbl_NEstablecimiento{
+                    grid-area:lbl_NEstablecimiento; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }
+
+
+
+                .nombre_establecimiento{
+                    grid-area:NEstablecimiento; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }
+
+                    .nacionalidad{
+                    grid-area:nacionalidad; 
+                    text-align:left;
+                    font-weight:bold;                                            
+                    }
+                    
+                    .codigo_pais{
+                    grid-area:codigo_pais; 
+                    text-align:left;
+                    font-weight:bold;                                            
+                    }                    
+                    
+                .lbl_rut{
+                    grid-area:lbl_rut; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }                    
+                                        
+                .Rut{
+                    grid-area:rut; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }
+
+                .lbl_persona{
+                    grid-area:lbl_persona; 
+                    text-align:left;                    
+                    font-weight:bold;                    
+                    }
+
+                    
+                  .nombre{
+                    grid-area:nombre; 
+                    text-align:left;                    
+                    font-weight:bold;                    
+                    }                  
+
+                  .apellido_p{
+                    grid-area:apellido_p; 
+                    text-align:left;                    
+                    font-weight:bold;                    
+                    }                  
+
+                  .apellido_m{
+                    grid-area:apellido_m; 
+                    text-align:left;                    
+                    font-weight:bold;                    
+                    }                  
+
+                    
+                .Destinos{
+                    grid-area:Destinos; 
+                    text-align:left;
+                    align-self:start;
+                    font-weight:bold;                    
+                    }
+
+.contenedor-docto-alternativo{
+           display: grid; 
+           grid-template-areas: 'espacio-izq1 espacio-sup1      espacio-sup1      espacio-sup1     espacio-der1 '
+                                'espacio-izq1 pais              tipos             val_tipo         espacio-der1 '
+                                'espacio-izq1 teclado           teclado           teclado          espacio-der1 '
+                                'espacio-izq1 acciones          acciones          acciones         espacio-der1 '
+                                'espacio-izq1 espacio-inf1      espacio-inf1      espacio-inf1     espacio-der1 ';	
+                                
+           grid-template-columns: 5% 30% 30% 30% 5%;
+           grid-template-rows:50px 50px 300px 50px 50px;
+           /*min-height: 100px;*/
+           /*line-height: 32px;*/
+           
+           justify-items: stretch;
+           align-items: center;
+           grid-gap: 5px;
+           font-family: arial;
+           font-size: 15px;
+           color:#5D470E;
+           width: 100%;
+           height:100%;
+           background: #F3E9CC;
+           padding: 5px;
+}
+
+                .pais{
+                    grid-area:pais; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }
+                .tipos{
+                    grid-area:tipos; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }
+
+                .valtipo{
+                    grid-area:val_tipo; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }                    
+
+                .teclado{
+                    grid-area:teclado; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }  
+                    
+                .acciones{
+                    grid-area:acciones; 
+                    text-align:center;                    
+                    font-weight:bold;                    
+                    }
+
+                .Destinos{
+                    grid-area:Destinos; 
+                    text-align:left;
+                    align-self:start;
+                    font-weight:bold;                    
+                    }
+
+.contenedor-teclado{
+           display: grid; 
+           grid-template-areas: 'espacio-izq2 espacio-sup2      espacio-sup2      espacio-sup2     espacio-der2 '
+                                'espacio-izq2 tecla1            tecla2            tecla3           espacio-der2 '
+                                'espacio-izq2 tecla4            tecla5            tecla6           espacio-der2 '
+                                'espacio-izq2 tecla7            tecla8            tecla9           espacio-der2 '
+                                'espacio-izq2 tipteclado        tecla0            borrar           espacio-der2 '
+                                'espacio-izq2 espacio-inf2      espacio-inf2      espacio-inf2     espacio-der2 ';	
+                                
+           grid-template-columns: 32% 12% 12% 12% 32%;
+           grid-template-rows:10px 50px 50px 50px 50px 10px;
+           /*min-height: 100px;*/
+           /*line-height: 32px;*/
+           
+           justify-items: stretch;
+           align-items: center;
+           grid-gap: 5px;
+           font-family: arial;
+           font-size: 15px;
+           color:#5D470E;
+           width: 100%;
+           height:100%;
+           background: #F3E9CC;
+           padding: 5px;
+}
+
+                .tecla1{
+                    grid-area:tecla1; 
+                    text-align:center;
+                    font-weight:bold;   
+                    width:min-content;
+                    justify-self:center;                    
+                    }
+
+                .tecla2{
+                    grid-area:tecla2; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                    
+                    }
+
+                .tecla3{
+                    grid-area:tecla3; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                    
+                    }
+
+                .tecla4{
+                    grid-area:tecla4; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tecla5{
+                    grid-area:tecla5; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tecla6{
+                    grid-area:tecla6; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tecla7{
+                    grid-area:tecla7; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tecla8{
+                    grid-area:tecla8; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tecla9{
+                    grid-area:tecla9; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tecla0{
+                    grid-area:tecla0; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+                    
+                .teclaDEL{
+                    grid-area:borrar; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }
+                    
+                .tipteclado{
+                    grid-area:tipteclado; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }
+
+.contenedor-completaPersona{
+           display: grid; 
+           grid-template-areas: 'espacio-izq2 espacio-sup2      espacio-sup2      espacio-sup2     espacio-der2 '
+                                'espacio-izq2 titulo            titulo            titulo           espacio-der2 '
+                                'espacio-izq2 lblnombre         nombre            nombre           espacio-der2 '
+                                'espacio-izq2 lblapaterno       apaterno          apaterno         espacio-der2 '
+                                'espacio-izq2 lblamaterno       amaterno          amaterno         espacio-der2 '
+                                'espacio-izq2 safenombre        safenombre        safenombre       espacio-der2 '
+                                'espacio-izq2 espacio-inf2      espacio-inf2      espacio-inf2     espacio-der2 ';	
+                                
+           grid-template-columns: 5% 15% 26% 26% 28%;
+           grid-template-rows:10px 50px 50px 50px 50px 50px 10px;
+           /*min-height: 100px;*/
+           /*line-height: 32px;*/
+           
+           justify-items: stretch;
+           align-items: center;
+           grid-gap: 5px;
+           font-family: arial;
+           font-size: 15px;
+           color:#5D470E;
+           width: 100%;
+           height:100%;
+           background: #F3E9CC;
+           padding: 5px;
+}
+
+                .titulo{
+                    grid-area:titulo; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }
+
+                .lblnombre{
+                    grid-area:lblnombre; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    align-items:stretch;
+                    }
+
+                .lblapaterno{
+                    grid-area:lblapaterno; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }
+
+                .lblamaterno{
+                    grid-area:lblamaterno; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }                    
+
+                    
+                .nombre{
+                    grid-area:nombre; 
+                    text-align:left;
+                    font-weight:normal;                    
+                    }
+
+                .apaterno{
+                    grid-area:apaterno; 
+                    text-align:left;
+                    font-weight:normal;                    
+                    }
+
+                .amaterno{
+                    grid-area:amaterno; 
+                    text-align:left;
+                    font-weight:normal;                    
+                    }                    
+
+                .safenombre{
+                    grid-area:safenombre; 
+                    text-align:end;
+                    font-weight:bold;                    
+                    }     
+                    
+                    
+.contenedor_teclado_latinoamericano{
+           display: grid; 
+           grid-template-areas: 'espacio-izq3 es es es es es es es es         es     es          espacio-der3 '
+                                'espacio-izq3 tq tw te tr tt ty tu ti         to     tp          espacio-der3 '
+                                'espacio-izq3 ta ts td tf tg th tj tk         tl     tñ          espacio-der3 '
+                                'espacio-izq3 tz tx tc tv tb tn tm tsubrayado tmenos tapostrofe  espacio-der3 '  
+                                'espacio-izq3 ee ev ev ev ev ev ev ev         eee    tDEL        espacio-der3 '
+                                'espacio-izq3 ei ei ei ei ei ei ei ei         ei     ei          espacio-der3 ';	
+                                
+           grid-template-columns: 10% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 40%;
+           grid-template-rows:10px 50px 50px 50px 50px 10px;
+           /*min-height: 100px;*/
+           /*line-height: 32px;*/
+           
+           justify-items: stretch;
+           align-items: center;
+           grid-gap: 5px;
+           font-family: arial;
+           font-size: 15px;
+           color:#5D470E;
+           width: 100%;
+           height:100%;
+           background: #F3E9CC;
+           padding: 5px;
+}
+
+                .tq{
+                    grid-area:tq; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tw{
+                    grid-area:tw; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .te{
+                    grid-area:te; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tr{
+                    grid-area:tr; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tt{
+                    grid-area:tt; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .ty{
+                    grid-area:ty; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tu{
+                    grid-area:tu; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .ti{
+                    grid-area:ti; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .to{
+                    grid-area:to; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .tp{
+                    grid-area:tp; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }
+
+                .ta{
+                    grid-area:ta; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                    
+                    
+                .ts{
+                    grid-area:ts; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .td{
+                    grid-area:td; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tf{
+                    grid-area:tf; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tg{
+                    grid-area:tg; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .th{
+                    grid-area:th; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tj{
+                    grid-area:tj; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tk{
+                    grid-area:tk; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tl{
+                    grid-area:tl; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tñ{
+                    grid-area:tñ; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                               
+                    
+                    
+                .tz{
+                    grid-area:tz; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                               
+
+                .tx{
+                    grid-area:tx; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                               
+
+                .tc{
+                    grid-area:tc; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                               
+
+                .tv{
+                    grid-area:tv; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                               
+
+                .tb{
+                    grid-area:tb; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                               
+
+                .tn{
+                    grid-area:tn; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }                               
+
+                .tm{
+                    grid-area:tm; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tsubrayado{
+                    grid-area:tsubrayado; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    }           
+
+                .tmenos{
+                    grid-area:tmenos; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    } 
+
+                .tapostrofe{
+                    grid-area:tapostrofe; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    } 
+                    
+                 .ev{
+                    grid-area:ev; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:100%;
+                    justify-self:center;                                        
+                    }                    
+ 
+                .tDEL{
+                    grid-area:tDEL; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                        
+                    } 
+
+.contenedor_gracias_visita{
+           display: grid; 
+           grid-template-areas: 'espacio-izq3 superior  superior  suérior   espacio-der3 '
+                                'espacio-izq3 mensaje   mensaje   mensaje   espacio-der3 '
+                                'espacio-izq3 operacion operacion operacion espacio-der3 '
+                                'espacio-izq3 inferior  inferior  inferior  espacio-der3';	
+                                
+           grid-template-columns: 10% 25% 30% 25% 10%;
+           grid-template-rows:10px 50px 50px 10px;
+           /*min-height: 100px;*/
+           /*line-height: 32px;*/
+           
+           justify-items: stretch;
+           align-items: center;
+           grid-gap: 5px;
+           font-family: arial;
+           font-size: 15px;
+           color:#5D470E;
+           width: 100%;
+           height:100%;
+           background: #F3E9CC;
+           padding: 5px;
+}
+
+           .mensaje{
+                    grid-area:mensaje; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:max-content;
+                    justify-self:center;                                            
+                    }
+                    
+           .operacion{
+                    grid-area:operacion; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    width:min-content;
+                    justify-self:center;                                            
+                    }                    
+                    
+                    
+.contenedor-mensaje{
+           display: grid; 
+           grid-template-areas: 'espacio-izq2 espacio-sup2      espacio-sup2      espacio-sup2     espacio-der2 '
+                                'espacio-izq2 titulo            titulo            titulo           espacio-der2 '
+                                'espacio-izq2 lblnombre         nombre            nombre           espacio-der2 '
+                                'espacio-izq2 lblapaterno       apaterno          apaterno         espacio-der2 '
+                                'espacio-izq2 lblamaterno       amaterno          amaterno         espacio-der2 '
+                                'espacio-izq2 volver            volver            volver           espacio-der2 '
+                                'espacio-izq2 espacio-inf2      espacio-inf2      espacio-inf2     espacio-der2 ';	
+                                
+           grid-template-columns: 5% 15% 26% 26% 28%;
+           grid-template-rows:10px 50px 50px 50px 50px 50px 10px;
+           /*min-height: 100px;*/
+           /*line-height: 32px;*/
+           
+           justify-items: stretch;
+           align-items: center;
+           grid-gap: 5px;
+           font-family: arial;
+           font-size: 15px;
+           color:#5D470E;
+           width: 100%;
+           height:100%;
+           background: #F3E9CC;
+           padding: 5px;
+}
+
+                .titulo{
+                    grid-area:titulo; 
+                    text-align:center;
+                    font-weight:bold;                    
+                    }
+
+                .lblnombre{
+                    grid-area:lblnombre; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    align-items:stretch;
+                    }
+
+                .lblapaterno{
+                    grid-area:lblapaterno; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }
+
+                .lblamaterno{
+                    grid-area:lblamaterno; 
+                    text-align:left;
+                    font-weight:bold;                    
+                    }                    
+
+                    
+                .nombre{
+                    grid-area:nombre; 
+                    text-align:left;
+                    font-weight:normal;                    
+                    }
+
+                .apaterno{
+                    grid-area:apaterno; 
+                    text-align:left;
+                    font-weight:normal;                    
+                    }
+
+                .amaterno{
+                    grid-area:amaterno; 
+                    text-align:left;
+                    font-weight:normal;                    
+                    }                    
+
+                .volver{
+                    grid-area:volver; 
+                    text-align:end;
+                    font-weight:bold;                    
+                    }     

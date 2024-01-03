@@ -1,0 +1,24 @@
+--------------------------------------------------------
+-- Archivo creado  - viernes-mayo-05-2023   
+--------------------------------------------------------
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/DROP.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/SQ_MARCA.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/DESTINO.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/GRD_CODIGOS.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/PERSONAS.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/DESTINO_DATA_TABLE.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/ESTABLECIMIENTO_DATA_TABLE.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/GRD_CODIGOS_DATA_TABLE.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/MARCAS_DATA_TABLE.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/PERSONAS_DATA_TABLE.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/SYS_C0087759.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/SYS_C0087798.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/SYS_C0087799.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/TIPOS_DOCUMENTOS_PK.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/SYS_C0087798.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/TIPOS_DOCUMENTOS_PK_1.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/SYS_C0087759_1.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/DESTINO_CONSTRAINT.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/GRD_CODIGOS_CONSTRAINT.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/PERSONAS_CONSTRAINT.sql
+@/home/fernando.garcia/workspace/apl/php/PruebasConcepto/totem/BD/Modelo_02/MARCAS_REFCONSTRAINT.sql

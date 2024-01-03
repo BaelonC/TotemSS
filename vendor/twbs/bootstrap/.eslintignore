@@ -1,0 +1,5 @@
+**/*.min.js
+**/vendor/
+/_site/
+/js/coverage/
+/site/static/sw.js
